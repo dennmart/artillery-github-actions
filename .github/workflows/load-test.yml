@@ -1,0 +1,17 @@
+name: Artillery Socket.IO Load Test
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  artillery:
+    container: artilleryio/artillery:latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Execute load tests
+        run: /home/node/artillery/bin/artillery run tests/performance/socket-io.yml
